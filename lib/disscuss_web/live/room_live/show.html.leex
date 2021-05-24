@@ -1,0 +1,53 @@
+<h1><%=@room.name %></h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, DisscussWeb.RoomLive.FormComponent,
+    id: @room.id,
+    title: @page_title,
+    action: @live_action,
+    room: @room,
+    return_to: Routes.room_show_path(@socket, :show, @room) %>
+<% end %>
+<div class="row">
+  <div class="column">
+      <div class="room-header">
+        <%=@room.name %>
+       (<%= live_patch "Edit", to: Routes.room_show_path(@socket, :edit, @room)%>)</div></div>
+  <div class="column column-10">
+    <div><%= live_redirect "Sair", to: Routes.room_index_path(@socket, :index) %></div>
+    </div>
+</div>
+<div class="row">
+<div class="column">
+<%= for message <- @messages do%>
+<span><%= message.text %><br></span>
+<% end %>
+</div>
+
+<div class="column column-20">
+<p>Online</p>
+<p><%= @current_user.username %></p>
+</div>
+</div>
+<div class="row">
+  <div class="column">
+ <%= f = form_for @changeset, "#", phx_submit: :send_message %>
+ <%= text_input f, :test %>
+
+ </ form >
+  </div>
+</div>
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @room.name %>
+
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @room.description %>
+  </li>
+
+</ul>
