@@ -1,0 +1,58 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+<p class="text-diss">4Disscuss</p>
+
+<%= if @live_action in [:new] do %>
+  <%= live_modal @socket, DisscussWeb.RoomLive.FormComponent,
+    id: @room.id || :new,
+    title: @page_title,
+    action: @live_action,
+    room: @room,
+    return_to: Routes.room_index_path(@socket, :index) %>
+<% end %>
+<div class=.container-fluid>
+<div class="row">
+ <div class="col">
+   <p class="text-criar">Criar nova sala</p>
+</div>
+<div class="col-1" >
+  <%= live_patch "+",to: Routes.room_index_path(@socket, :new), class: "Green-Button" %></span>
+</div>
+</div>
+</div>
+
+
+          <%# <span><%= live_redirect "Enter", to: Routes.room_show_path(@socket, :show, room) %>
+          <%# <span><%= live_patch "Edit", to: Routes.room_index_path(@socket, :edit, room)</span> %>
+          <%#  <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: room.id, data: [confirm: "Are you sure?"] </span> %>
+
+<%= for room <- @rooms do %>
+<div class="chat">
+<div class=.container-fluid>
+    <div class="row">
+          <div class="col">
+            <h5 class="text-title"><%= room.name %> #<%= room.id%></h5>
+          </div>
+    <div class="col-1">
+       <div class="room-button"> <%= live_redirect "Entrar", to: Routes.room_show_path(@socket, :show, room), class: "btn btn-dark"%></div>
+         </div>
+
+
+    </div>
+    <div class="row align-items-end">
+     <div class="col-7">
+          <p> <%= room.description %></p>
+          </div>
+
+    </div>
+   </div>
+ <div class="row">
+    <div class="col-4">
+
+       <div class="room-button"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: room.id, class: "btn btn-outline-danger btn-sm"%>
+   </div>
+ </div>
+</div>
+</div>
+<% end %>

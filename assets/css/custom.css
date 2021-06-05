@@ -1,0 +1,114 @@
+ a {
+    text-decoration: none!important;
+   }
+   p {
+    color:#251d24;
+   }
+   .text-criar{
+    font-size:large;
+    font-family: sans-serif;
+    color:#a19ea1; 
+    text-align:right;
+   }
+   .text-title{
+  color: #F2F1E8;
+   }
+   .user{
+    position: absolute;
+    top: 3%;
+    right: 9%;
+    color: #F2F1E8;
+     }
+   .room-title{
+  
+    font-size:300%!important;
+    left: 3%;
+    color: #ffb326;
+     }
+     .set-title{
+         text-align: center;
+         font-family: monospace;
+        font-size:400%!important;
+        color: #eeac32;
+        margin: auto;
+      
+         }
+   .text-diss{
+    font-size:600%!important;
+    text-align:center;
+    color: #E34234;
+    font-family:Impact;
+    margin: 40px;
+   }
+   
+   .Green-Button {
+    position:relative;
+    bottom:15%;
+	background-color:#c4c4c4b0!important;
+	cursor:pointer;
+    color:#6b6a63!important;
+	font-family:Arial;
+	font-size:28px!important;
+	font-weight:bold;
+	padding:0px 13px!important;
+}
+.Green-Button:hover {
+	background-color:hsla(0, 0%, 0%, 0.253)!important;
+}
+.Green-Button:active {
+    bottom:12%;
+}
+.backgroud{
+    background-color: #3c3c3c
+}
+.text-input{
+    left: 5%!important;
+}
+.text-form{
+    position: absolute!important;
+    bottom:5%;
+    left: 5%;
+    right: 35%;
+    
+  
+}
+.text-area{
+    margin: 10px 20px;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.1);
+    background-color: #7B7B7B;
+    border-radius: 20px;
+}
+.chat-area{  
+    position: absolute!important;
+    bottom: 18%;
+    padding: 10px 20px;
+    top: 130px;
+    left: 3%;
+    right: 30%;
+    overflow: auto;
+    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.1);
+    background-color: #7B7B7B;
+    border-radius: 2px;
+}
+.online-area{
+    position: absolute!important;
+    bottom: 20%!important;
+    top: 150px;
+    margin: 1% 20px;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.1);
+    background-color: #7B7B7B;
+    border-radius: 20px;
+}
+.login-area{  
+    top: 200%;
+    margin:auto;
+    width: 50%;
+    padding: 20px;
+    align-items: center;
+    overflow: auto;
+    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.1);
+    background-color: #7B7B7B;
+    border-radius: 20px;
+} 

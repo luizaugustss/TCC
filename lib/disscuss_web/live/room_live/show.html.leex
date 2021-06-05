@@ -1,0 +1,59 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+<h1 class="room-title"><%=@room.name %></h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, DisscussWeb.RoomLive.FormComponent,
+    id: @room.id,
+    title: @page_title,
+    action: @live_action,
+    room: @room,
+    return_to: Routes.room_show_path(@socket, :show, @room) %>
+<% end %>
+<div class="container-fluid">
+<div class="row">
+  <div class="col">
+      <div class="text-title"><%=@room.description %></div>
+     <span> <%= live_patch "Editar sala", to: Routes.room_show_path(@socket, :edit, @room)%>
+      </span>
+      </div>
+  <div class="col-2">
+    <%= live_redirect "Sair da sala", to: Routes.room_index_path(@socket, :index) %>
+    </div>
+
+
+<div class="row">
+<div class="col">
+<div class="chat-area">
+
+<%= for message <- @messages do%>
+<strong><%= message.username%>:</strong>
+
+<span><%= message.text %><br></span>
+
+<% end %>
+
+<%# <%= for current_user <- @socket do%>
+<%# <%= current_user.email %>
+<%# <% end %>
+</div>
+</div>
+
+<div class="col-2">
+
+<div class =online-area>
+<p></p>
+<p class="text-title">Online na sala</p>
+<p><%= @current_user.username %></p>
+</div>
+</div>
+</div>
+<div class="row">
+</div>
+</div>
+<%= f = form_for @changeset, "#", phx_submit: :send_message, class: "text-form"%>
+
+ <%= text_input f, :text, class: "form-control" %>
+ <%= error_tag f, :text %>
+ </form >

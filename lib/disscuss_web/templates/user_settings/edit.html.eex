@@ -1,0 +1,57 @@
+<p class="text-diss">4Disscuss</p>
+<div class="login-area">
+<h1 class="set-title">Configurar</h1>
+
+<h3>Mudar email</h3>
+
+<%= form_for @email_changeset, Routes.user_settings_path(@conn, :update), fn f -> %>
+  <%= if @email_changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= hidden_input f, :action, name: "action", value: "update_email" %>
+
+  <%= label f, :email %>
+  <%= email_input f, :email, required: true, class: "inp-custon" %>
+  <%= error_tag f, :email %>
+
+  <%= label f, :current_password, "E-mail atual" %>
+  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email", class: "inp-custon" %>
+  <%= error_tag f, :current_password %>
+
+  <div>
+    <%= submit "Mudar email" %>
+  </div>
+<% end %>
+
+
+<h3>Mudar senha</h3>
+
+<%= form_for @password_changeset, Routes.user_settings_path(@conn, :update), fn f -> %>
+  <%= if @password_changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= hidden_input f, :action, name: "action", value: "update_password" %>
+
+  <%= label f, :password, "Nova senha" %>
+  <%= password_input f, :password, required: true, class: "inp-custon" %>
+  <%= error_tag f, :password %>
+
+  <%= label f, :password_confirmation, "Confirmar senha" %>
+  <%= password_input f, :password_confirmation, required: true, class: "inp-custon" %>
+  <%= error_tag f, :password_confirmation %>
+
+  <%= label f, :current_password, "Senha atual" %>
+  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password", class: "inp-custon" %>
+  <%= error_tag f, :current_password %>
+
+  <div>
+    <%= submit "Mudar senha" %>
+  </div>
+<% end %>
+</div>
