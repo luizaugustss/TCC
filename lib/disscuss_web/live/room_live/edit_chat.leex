@@ -1,0 +1,19 @@
+<h2>chat edit</h2>
+
+<%= f = form_for @changeset, "#",
+  id: "chat",
+  phx_target: @myself,
+  phx_change: "validate",
+  phx_submit: "save" %>
+
+  <%= label f, :name %><br>
+  <%= text_input f, :name %><br><br>
+  <%= error_tag f, :name %>
+
+  <%= label f, :description %><br>
+  <%= text_input f, :description %><br><br>
+  <%= error_tag f, :description %>
+
+
+  <%= submit "Save", phx_disable_with: "Saving..." %>
+</form>

@@ -50,10 +50,65 @@
 </div>
 </div>
 <div class="row">
+<div class="col">
+<div class="chat-area">
+
+
+<%= for message <- @chat do%>
+<strong>qualquer</strong>
+
+<span><%= message.text %><br></span>
+
+<% end %>
+<%# <%= for current_user <- @socket do%>
+<%# <%= current_user.email %>
+<%# <% end %>
+</div>
+<div class="col-2">
+
+</div>
 </div>
 </div>
 <%= f = form_for @changeset, "#", phx_submit: :send_message, class: "text-form"%>
 
  <%= text_input f, :text, class: "form-control" %>
  <%= error_tag f, :text %>
+<%= live_file_input @uploads.photo %>
+<%= @uploads.photo.entries %>
+
+ <%= for entry <- @uploads.photo.entries do %>
+    <div class="row">
+      <div class="column">
+        <%= live_img_preview entry, height: 80 %>
+      </div>
+      <div class="column">
+      <progress max="100" value="<%= entry.progress %>"></progress>
+      </div>
+      <div class="column">
+
+      </div>
+    </div>
+  <% end %>
  </form >
+<%= f = form_for @changeset, "#", phx_submit: :send_text, class: "text-form"%>
+
+ <%= text_input f, :text, class: "form-control" %>
+ <%= error_tag f, :text %>
+ </form >
+ <form id="cxzc" phx-submit="save" phx-change="validate">
+ <%= live_file_input @uploads.photo %>
+
+ <%= for entry <- @uploads.photo.entries do %>
+    <div class="row">
+      <div class="column">
+
+        <%= live_img_preview entry, height: 80, weight: 80 %>
+      </div>
+      <div class="column">
+      <progress max="100" value="<%= entry.progress %>"></progress>
+      </div>
+
+    </div>
+<% end %>
+ <button type="submit">Upload</button>
+</form>

@@ -1,4 +1,5 @@
 defmodule DisscussWeb.RoomLive.Show do
+  @moduledoc false
 
   use DisscussWeb, :live_view
   alias Disscuss.Accounts
@@ -8,8 +9,10 @@ defmodule DisscussWeb.RoomLive.Show do
   @impl true
   def mount( %{"id" => id}, %{"user_token"=> user_token} = _session, socket) do
       {:ok, socket
+      |> allow_upload(:photo, accept: ~w(.png .jpg .jpeg))
       |> assign(:current_user, Accounts.get_user_by_session_token(user_token))
       |> assign(:messages, list_messages(id))
+      |> assign(:chat,[])
     }
   end
 
@@ -23,9 +26,13 @@ defmodule DisscussWeb.RoomLive.Show do
   @impl true
   def handle_event("send_message", %{"message" =>attrs}, %{assigns: %{message: message}} = socket)do
     Chat.create_message(message, attrs)
+
     {:noreply, socket}
   end
-
+  @impl true
+  def handle_event("send_chat", _url, socket)do
+    {:noreply, socket}
+  end
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
     room = Chat.get_room!(id)

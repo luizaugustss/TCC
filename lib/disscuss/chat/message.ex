@@ -18,5 +18,6 @@ defmodule Disscuss.Chat.Message do
     message
     |> cast(attrs,[:text , :username])
     |> validate_required([:text, :username])
+
   end
 end

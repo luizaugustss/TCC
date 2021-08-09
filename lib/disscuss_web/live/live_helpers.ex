@@ -20,4 +20,5 @@ defmodule DisscussWeb.LiveHelpers do
     modal_opts = [id: :modal, return_to: path, component: component, opts: opts]
     live_component(socket, DisscussWeb.ModalComponent, modal_opts)
   end
+
 end
