@@ -1,5 +1,7 @@
+
 defmodule Disscuss.MixProject do
   use Mix.Project
+
 
   def project do
     [
@@ -37,7 +39,9 @@ defmodule Disscuss.MixProject do
       {:phoenix, "~> 1.5.7"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},
+      {:brcpfcnpj, "~> 0.2.3"},
       {:postgrex, ">= 0.0.0"},
+      {:tzdata, "~> 1.1"},
       {:credo, "~> 1.5",only: [:dev, :test],runtime: false},
       {:phoenix_live_view, "~> 0.15.0"},
       {:floki, ">= 0.27.0", only: :test},

@@ -10,8 +10,19 @@
     color:#a19ea1; 
     text-align:right;
    }
+   .text-data{
+    font-size:8px;
+    font-family: sans-serif;
+    color:#0e000e; 
+    text-align:right;
+   }
    .text-title{
   color: #F2F1E8;
+   }
+   .description{
+    font-size:large; 
+    font-family:'Franklin Gothic Medium';
+    color: #2e2e2e;
    }
    .user{
     position: absolute;
@@ -59,8 +70,9 @@
     bottom:12%;
 }
 .backgroud{
-    background-color: #3c3c3c
-}
+    background: rgb(20,3,23);
+    background: linear-gradient(160deg, rgba(20,3,23,1) 0%, rgba(20,20,60,1) 43%, rgba(20,20,20,1) 100%);
+    }
 .text-input{
     left: 5%!important;
 }
@@ -87,31 +99,71 @@
     margin-top: 2%;
     margin-bottom: 2%;
     padding: 10px 20px;
-    width: 50% ;
-    height: 150px;
-    overflow: auto;
+    width: 700px ;
+    height: 500px;
+    overflow: scroll;
+    border-radius: 15px!important;
     box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.1);
-    background-color: #7B7B7B;
+    background: rgb(85,85,122);
+    background: linear-gradient(309deg, rgba(85,85,122,1) 0%, rgba(97,102,120,1) 51%, rgba(104,96,121,1) 100%);
     border-radius: 2px;
 }
+.cont-chat {
+    position: relative;
+    left: 250px!important;
+    border-radius: 20px!important;
+    background-color: #82ccdd;
+  
+    width: 400px ;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  .cont-chat-self{
+    border-radius: 20px!important;
+    background-color: #78e08f;
+    width: 400px ;
+    padding: 10px;
+    margin: 10px 0;
+  }
 .online-area{
-    position: absolute!important;
-    bottom: 20%!important;
+    
+    height: 500px ;
+    width: 300px ;
     top: 150px;
     margin: 1% 20px;
     padding: 10px 20px;
     box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.1);
-    background-color: #7B7B7B;
+    background: rgb(85,85,122);
+    background: linear-gradient(309deg, rgba(85,85,122,1) 0%, rgba(97,102,120,1) 51%, rgba(104,96,121,1) 100%);
     border-radius: 20px;
 }
 .login-area{  
-    top: 200%;
-    margin:auto;
-    width: 50%;
+    position: relative;
+   
+    margin: auto ;
+    width: 250px;
+    height: auto;
     padding: 20px;
-    align-items: center;
-    overflow: auto;
-    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.1);
-    background-color: #7B7B7B;
+    background-color: #F2F1E8;
     border-radius: 20px;
 } 
+.inp-custon{
+    margin: 10px 10px;
+    padding: 0px 2px;
+    background-color:#F2F1E8;
+    display: block;
+    border: 2px solid #F2F1E8;
+    border-bottom:2px solid #1e2264 ;
+    
+   }
+   .inp-custon:hover {
+    border: 2px solid #F2F1E8;
+    border-bottom:2px solid #7d12c0!important;
+    border-radius: 0px;
+   }
+   .inp-custon:focus{
+    border-color:rgb(57, 192, 91)!important;
+    border: 2px solid #c163ff !important;
+    
+    border-radius: 0px!important ;
+  }

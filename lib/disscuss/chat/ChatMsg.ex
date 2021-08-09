@@ -1,8 +1,8 @@
-defmodule Disscuss.Chat.Message do
+defmodule Disscuss.Chat.ChatMsg do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "messages" do
+  schema "chat_msgs" do
     field :data, :map
     field :text, :string
     field :username, :string
@@ -10,14 +10,13 @@ defmodule Disscuss.Chat.Message do
     field :recipient_id, :id
     field :room_id, :id
 
-    timestamps([type: :utc_datetime_usec])
+    timestamps()
   end
 
   @doc false
-  def changeset(message, attrs) do
-    message
+  def changeset(chat, attrs) do
+    chat
     |> cast(attrs, [:text , :username])
     |> validate_required([:text, :username])
-
   end
 end

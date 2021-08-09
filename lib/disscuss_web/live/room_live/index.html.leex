@@ -29,7 +29,7 @@
 
 <%= for room <- @rooms do %>
 <div class="chat">
-<div class=.container-fluid>
+<div class=container-fluid>
     <div class="row">
           <div class="col">
             <h5 class="text-title"><%= room.name %> #<%= room.id%></h5>
@@ -37,21 +37,23 @@
     <div class="col-1">
        <div class="room-button"> <%= live_redirect "Entrar", to: Routes.room_show_path(@socket, :show, room), class: "btn btn-dark"%></div>
          </div>
-
-
     </div>
     <div class="row align-items-end">
      <div class="col-7">
-          <p> <%= room.description %></p>
+          <p class="description"> <%= room.description %></p>
+
           </div>
 
-    </div>''
+    </div>
    </div>
  <div class="row">
-    <div class="col-4">
 
-       <div class="room-button"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: room.id, class: "btn btn-outline-danger btn-sm"%>
+     <div class="col-4">
+<%=if @current_user.adm do%>
+ <div class="room-button"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: room.id, class: "btn btn-outline-danger btn-sm"%>
+
    </div>
+ <%end %>
  </div>
 </div>
 </div>

@@ -5,12 +5,7 @@
 <h3>Mudar email</h3>
 
 <%= form_for @email_changeset, Routes.user_settings_path(@conn, :update), fn f -> %>
-  <%= if @email_changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
-
+  
   <%= hidden_input f, :action, name: "action", value: "update_email" %>
 
   <%= label f, :email %>
@@ -18,7 +13,7 @@
   <%= error_tag f, :email %>
 
   <%= label f, :current_password, "E-mail atual" %>
-  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email", class: "inp-custon" %>
+  <%= email_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email", class: "inp-custon" %>
   <%= error_tag f, :current_password %>
 
   <div>

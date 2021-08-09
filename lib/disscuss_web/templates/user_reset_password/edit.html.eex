@@ -13,21 +13,21 @@
     </div>
   <% end %>
 
-  <%= label f, :password, "New password" %>
+  <%= label f, :password, "Nova Senha" %>
   <%= password_input f, :password, required: true, class: "inp-custon" %>
   <%= error_tag f, :password %>
 
-  <%= label f, :password_confirmation, "Confirm new password" %>
+  <%= label f, :password_confirmation, "Confirmar Nova Senha" %>
   <%= password_input f, :password_confirmation, required: true, class: "inp-custon"%>
   <%= error_tag f, :password_confirmation %>
 
   <div>
-    <%= submit "Reset password" %>
+    <%= submit "Atualizar Senha" %>
   </div>
 <% end %>
 
 <p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
+  <%= link "Criar nova conta", to: Routes.user_registration_path(@conn, :new) %> |
+  <%= link "Entar", to: Routes.user_session_path(@conn, :new) %>
 </p>
 </div>

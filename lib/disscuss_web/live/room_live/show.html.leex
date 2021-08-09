@@ -15,7 +15,9 @@
 <div class="row">
   <div class="col">
       <div class="text-title"><%=@room.description %></div>
+      <%=if @current_user.adm do%>
      <span> <%= live_patch "Editar sala", to: Routes.room_show_path(@socket, :edit, @room)%>
+     <%end %>>
       </span>
       </div>
   <div class="col-2">
@@ -28,9 +30,15 @@
 <div class="chat-area">
 
 <%= for message <- @messages do%>
-<strong><%= message.username%>:</strong>
-
-<span><%= message.text %><br></span>
+<%=if  message.username != @current_user.username do%>
+<div class="cont-chat">
+<% else %>
+<div class="cont-chat-self">
+<% end %>
+ <strong><%= message.username%>:</strong>
+  <span><%= message.text %></span>
+  <p class="text-data"><%= message.tempo%>  </p>
+</div>
 
 <% end %>
 
@@ -40,75 +48,35 @@
 </div>
 </div>
 
-<div class="col-2">
+<div class="col-3">
 
 <div class =online-area>
 <p></p>
 <p class="text-title">Online na sala</p>
 <p><%= @current_user.username %></p>
+
+
 </div>
 </div>
 </div>
-<div class="row">
-<div class="col">
-<div class="chat-area">
 
 
-<%= for message <- @chat do%>
-<strong>qualquer</strong>
 
-<span><%= message.text %><br></span>
 
-<% end %>
+
 <%# <%= for current_user <- @socket do%>
 <%# <%= current_user.email %>
 <%# <% end %>
-</div>
-<div class="col-2">
 
-</div>
-</div>
-</div>
+
+
+
+
+
 <%= f = form_for @changeset, "#", phx_submit: :send_message, class: "text-form"%>
 
  <%= text_input f, :text, class: "form-control" %>
- <%= error_tag f, :text %>
-<%= live_file_input @uploads.photo %>
-<%= @uploads.photo.entries %>
 
- <%= for entry <- @uploads.photo.entries do %>
-    <div class="row">
-      <div class="column">
-        <%= live_img_preview entry, height: 80 %>
-      </div>
-      <div class="column">
-      <progress max="100" value="<%= entry.progress %>"></progress>
-      </div>
-      <div class="column">
+<%= error_tag f, :text %>
 
-      </div>
-    </div>
-  <% end %>
  </form >
-<%= f = form_for @changeset, "#", phx_submit: :send_text, class: "text-form"%>
-
- <%= text_input f, :text, class: "form-control" %>
- <%= error_tag f, :text %>
- </form >
- <form id="cxzc" phx-submit="save" phx-change="validate">
- <%= live_file_input @uploads.photo %>
-
- <%= for entry <- @uploads.photo.entries do %>
-    <div class="row">
-      <div class="column">
-
-        <%= live_img_preview entry, height: 80, weight: 80 %>
-      </div>
-      <div class="column">
-      <progress max="100" value="<%= entry.progress %>"></progress>
-      </div>
-
-    </div>
-<% end %>
- <button type="submit">Upload</button>
-</form>

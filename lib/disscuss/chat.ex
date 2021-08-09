@@ -8,6 +8,8 @@ defmodule Disscuss.Chat do
 
   alias Disscuss.Chat.Room
   alias Disscuss.Chat.Message
+  alias Disscuss.Chat.ChatMsg
+
   @doc """
   Returns the list of rooms.
 
@@ -118,6 +120,10 @@ defmodule Disscuss.Chat do
      Repo.all( from p in Message, where: p.room_id == ^id)
   end
 
+  def list_chat_msg(id) do
+    Repo.all( from p in ChatMsg, where: p.room_id == ^id)
+ end
+
   @doc """
   Gets a single message.
 
@@ -146,6 +152,15 @@ defmodule Disscuss.Chat do
       {:error, %Ecto.Changeset{}}
 
   """
+  def create_chat_msg(msg, attrs \\ %{}) do
+    with {:ok, msg} <-
+    msg
+    |> ChatMsg.changeset(attrs)
+    |> Repo.insert() do
+      broadcast_chat_message(msg.room_id, msg)
+     end
+   end
+
   def create_message(message, attrs \\ %{}) do
     with {:ok, message} <-
     message
@@ -154,9 +169,11 @@ defmodule Disscuss.Chat do
       broadcast_message(message.room_id, message)
      end
    end
-   
+
    defp broadcast_message(room_id, message),
    do: Phoenix.PubSub.broadcast(Disscuss.PubSub, topic_room(room_id), {:message_sent, message})
+   defp broadcast_chat_message(room_id, message),
+   do: Phoenix.PubSub.broadcast(Disscuss.PubSub, topic_room(room_id), {:chat_sent, message})
 
 
 

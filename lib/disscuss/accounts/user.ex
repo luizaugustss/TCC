@@ -1,11 +1,15 @@
 defmodule Disscuss.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  import Brcpfcnpj.Changeset
+
 
   @derive {Inspect, except: [:password]}
   schema "users" do
     field :email, :string
     field :username, :string
+    field :cpf, :string
+    field :adm, :boolean, default: false
     field :password, :string, virtual: true
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
@@ -32,19 +36,30 @@ defmodule Disscuss.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email,:username ,:password])
+    |> cast(attrs, [:email,:username,:cpf ,:password])
     |> validate_email()
     |> validate_username()
+    |> validate_cpf_1()
     |> validate_password(opts)
   end
   defp validate_username(changeset) do
     changeset
     |> validate_required([:username])
-    |> validate_length(:username,min: 2)
+    |> validate_length(:username,min: 3)
     |> unsafe_validate_unique(:username, Disscuss.Repo)
     |> unique_constraint(:username)
 
   end
+  defp validate_cpf_1(changeset) do
+    changeset
+    |> validate_required([:cpf])
+    |> validate_cpf(:cpf,message: "Cpf Inválido")
+    |> unsafe_validate_unique(:cpf, Disscuss.Repo)
+    |> unique_constraint(:cpf)
+
+  end
+
+
   defp validate_email(changeset) do
     changeset
     |> validate_required([:email])

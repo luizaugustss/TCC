@@ -18,8 +18,8 @@
 
 <div class="col-3">
 <div class="user">
-<%= link "Registrar", to: Routes.user_registration_path(@conn, :new),class: "btn-custon" %>
-<%= link "Log in", to: Routes.user_session_path(@conn, :new),class: "btn-custon" %>
+<%= link "Criar nova conta", to: Routes.user_registration_path(@conn, :new),class: "btn-custon" %>
+<%= link "Entrar", to: Routes.user_session_path(@conn, :new),class: "btn-custon" %>
 </div>
 </div>
 <% end %>

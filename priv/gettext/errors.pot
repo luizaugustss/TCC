@@ -27,6 +27,9 @@ msgstr ""
 ## From Ecto.Changeset.validate_format/3
 msgid "has invalid format"
 msgstr ""
+## From Ecto.Changeset.validate_cpf/3
+msgid "has invalid cpf"
+msgstr ""
 
 ## From Ecto.Changeset.validate_subset/3
 msgid "has an invalid entry"
